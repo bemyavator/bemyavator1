@@ -6,6 +6,7 @@
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,700" rel="stylesheet">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script src="http://www.openlayers.org/api/OpenLayers.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Launch - Startup Landing Page</title>
 <meta name="description" content="Startup Landing Page">
@@ -15,8 +16,45 @@
 <link href="css/font-awesome.min.css" rel="stylesheet">
 <link href="css/magnific-popup.css" rel="stylesheet">
 <link href="css/main.css" rel="stylesheet">
+<script type="text/javascript">
+	
+    // Posizione iniziale della mappa
+        var lat=44.355;
+        var lon=11.71;
+        var zoom=13;
+            
+        function init() {
+     
+            map = new OpenLayers.Map ("map", {
+                controls:[ 
+                new OpenLayers.Control.Navigation(),
+                           new OpenLayers.Control.PanZoomBar(),
+                           new OpenLayers.Control.ScaleLine(),
+                           new OpenLayers.Control.Permalink('permalink'),
+                           new OpenLayers.Control.MousePosition(),                    
+                           new OpenLayers.Control.Attribution()
+                          ],
+                projection: new OpenLayers.Projection("EPSG:900913"),
+                displayProjection: new OpenLayers.Projection("EPSG:4326")
+                } );
+     
+            var mapnik = new OpenLayers.Layer.OSM("OpenStreetMap (Mapnik)");
+            
+            map.addLayer(mapnik);
+     
+            var lonLat = new OpenLayers.LonLat( lon ,lat )
+              .transform(
+                new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+                map.getProjectionObject() // to Spherical Mercator Projection
+              );
+                  
+            map.setCenter (lonLat, zoom);
+     
+     }
+     
+    </script>
 </head>
-<body>
+<body  onload="init();">
 
 <!--hero section-->
 
@@ -462,7 +500,7 @@
   
   <!--map-->
   <div class="map">
-    <div id="map-canvas"></div>
+    <div id="map"></div>
   </div>
   <!--map end--> 
   
