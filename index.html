@@ -6,7 +6,8 @@
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300,700" rel="stylesheet">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<script src="js/OpenLayers.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Launch - Startup Landing Page</title>
 <meta name="description" content="Startup Landing Page">
@@ -19,7 +20,7 @@
 <script type="text/javascript">
 	
     // Posizione iniziale della mappa
-        var lat=44.355;
+/*        var lat=44.355;
         var lon=11.71;
         var zoom=13;
             
@@ -51,7 +52,7 @@
             map.setCenter (lonLat, zoom);
      
      }
-     
+     */
     </script>
 </head>
 <body  onload="init();">
@@ -501,6 +502,21 @@
   <!--map-->
   <div class="map">
     <div style="width:100%; height:95%" id="map"></div>
+    <script>
+
+        var mymap = L.map('map').setView([51.505, -0.09], 13);
+    
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+            maxZoom: 18,
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+                'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1
+        }).addTo(mymap);
+    
+    </script>
+    
   </div>
   <!--map end--> 
   
